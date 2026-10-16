@@ -1,0 +1,33 @@
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build output and release archives
+/build/
+/dist/
+*.zip
+
+# Tooling caches
+.phpunit.cache/
+.phpunit.result.cache
+.phpcs-cache
+.eslintcache
+.stylelintcache
+
+# Local environments
+.wp-env.override.json
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Editors and OS files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
