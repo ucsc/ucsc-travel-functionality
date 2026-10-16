@@ -1,0 +1,52 @@
+{
+  "name": "ucsc-travel-functionality",
+  "version": "0.1.0",
+  "description": "Custom functionality plugin for the UCSC Travel site",
+  "scripts": {
+    "release": "commit-and-tag-version",
+    "dryrun": "commit-and-tag-version --dry-run",
+    "zip": "wp-scripts plugin-zip",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ucsc/ucsc-travel-functionality.git"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "author": "UC Santa Cruz",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ucsc/ucsc-travel-functionality/issues"
+  },
+  "homepage": "https://github.com/ucsc/ucsc-travel-functionality#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^34.0.0",
+    "commit-and-tag-version": "^12.7.1"
+  },
+  "files": [
+    "lib",
+    "plugin.php",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "commit-and-tag-version": {
+    "bumpFiles": [
+      {
+        "filename": "package-lock.json",
+        "type": "json"
+      },
+      {
+        "filename": "package.json",
+        "type": "json"
+      },
+      {
+        "filename": "plugin.php",
+        "updater": "wp-plugin-version-updater.js"
+      }
+    ]
+  }
+}

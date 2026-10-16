@@ -56,7 +56,7 @@ add_filter( 'get_the_archive_title_prefix', 'ucsctravel_filter_category_archive_
 /**
  * Replace the "Category:" prefix on category archive titles
  *
- * get_the_archive_title() ignores the taxonomy labels and hardcodes the
+ * Core's get_the_archive_title() ignores the taxonomy labels and hardcodes the
  * "Category:" prefix, so the label filter above does not reach it. This
  * filter covers that prefix in most themes and in the Query Title block.
  *

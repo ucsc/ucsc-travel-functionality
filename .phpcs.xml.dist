@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="UCSC Travel Functionality" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+	<description>WordPress Coding Standards for the UCSC Travel Functionality plugin</description>
+
+	<!-- Scan the whole plugin by default, so `phpcs` needs no path argument. -->
+	<file>.</file>
+
+	<!-- WPCS 3.x has no JavaScript or CSS sniffs. Restrict the scan to PHP. -->
+	<arg name="extensions" value="php"/>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<!-- The WordPress stand-ins in tests/stubs.php mirror core signatures. -->
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Commenting.Todo"/>
+
+	<!-- Match the `Requires at least` header in plugin.php. -->
+	<config name="minimum_supported_wp_version" value="6.5"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="ucsctravel"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="ucsctravel"/>
+			</property>
+		</properties>
+		<!--
+		tests/ declares stand-ins for WordPress core functions (add_filter(),
+		is_category(), …) and PHPUnit test classes. Neither can carry the
+		plugin prefix and still do its job.
+		-->
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+
+</ruleset>

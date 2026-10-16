@@ -1,0 +1,26 @@
+{
+    "name": "ucsc/travel-functionality",
+    "description": "Adds custom functionality to the UCSC Travel website.",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "phpunit/phpunit": "^10.5",
+        "wp-coding-standards/wpcs": "^3.1"
+    },
+    "scripts": {
+        "lint": "./vendor/bin/phpcs",
+        "lint-fix": "./vendor/bin/phpcbf --extensions=php .",
+        "test": "./vendor/bin/phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.1"
+        }
+    }
+}
