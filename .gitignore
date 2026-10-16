@@ -15,6 +15,7 @@
 .stylelintcache
 
 # Local environments
+CLAUDE.local.md
 .wp-env.override.json
 .env
 .env.*
