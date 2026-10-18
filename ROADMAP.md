@@ -8,10 +8,14 @@ This is a technical roadmap, not a product plan. The items come from testing the
 
 ## Current state
 
-The plugin renames the built-in Category taxonomy to "Expedition" for display. The repository is at [github.com/ucsc/ucsc-travel-functionality](https://github.com/ucsc/ucsc-travel-functionality), and `main` has three commits.
+The plugin renames the built-in Category taxonomy to "Expedition" for display. The repository is at [github.com/ucsc/ucsc-travel-functionality](https://github.com/ucsc/ucsc-travel-functionality).
 
-| Commit | Change |
+Landed work, newest first:
+
+| Commit or PR | Change |
 | --- | --- |
+| `7a67992`, `3733f08` | `README.md` and the GPL v3 `LICENSE` |
+| [#1](https://github.com/ucsc/ucsc-travel-functionality/pull/1) | This roadmap updated for the GitHub remote |
 | `535e043` | `CLAUDE.md` and this roadmap |
 | `a479ec4` | Composer, npm, PHPCS and PHPUnit tooling, the version updater, and a 13-test suite |
 | `1a4a6a9` | Plugin bootstrap, the Category label filter, and the archive title prefix filter |
@@ -38,10 +42,9 @@ Text that a theme hardcodes in its templates or block patterns, such as `__( 'Ca
 
 The GitHub repository exists, and its URL matches the plugin header and `package.json`. Each item below copies something the giving plugin already has.
 
-1. Add `README.md` and `LICENSE`. Both are in the `files` array of `package.json`, so they ship in the zip. The license is GPL3, as the plugin header states.
-2. Add `.github/workflows/ci.yml`, which runs `composer lint` and `composer test` on PHP 8.1 and 8.4 and makes sure that the zip contents are correct. The giving plugin's version needs only new names and paths.
-3. Add `.github/workflows/release.yml`, which calls the shared `ucsc/actions` release workflow on `v*.*.*` tags. Set `zip-name` to `ucsc-travel-functionality.zip`, because this package name has no `-plugin` suffix.
-4. Make the first release with `npm run release -- --first-release`, so that the version stays 0.1.0.
+1. Add `.github/workflows/ci.yml`, which runs `composer lint` and `composer test` on PHP 8.1 and 8.4 and makes sure that the zip contents are correct. The giving plugin's version needs only new names and paths.
+2. Add `.github/workflows/release.yml`, which calls the shared `ucsc/actions` release workflow on `v*.*.*` tags. Set `zip-name` to `ucsc-travel-functionality.zip`, because this package name has no `-plugin` suffix.
+3. Make the first release with `npm run release -- --first-release`, so that the version stays 0.1.0.
 
 ## 4. Commit a Playground blueprint
 
