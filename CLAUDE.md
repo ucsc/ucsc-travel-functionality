@@ -24,7 +24,7 @@ npm run dryrun        # Preview the version bump and changelog
 npm run release       # Bump the version, update CHANGELOG.md, commit and tag
 ```
 
-No CI workflow exists yet. Run `composer lint` and `composer test` yourself before you commit.
+`.github/workflows/ci.yml` runs `composer lint` and `composer test` on PHP 8.1 and 8.4 for each pull request and each push to `main`. Run both yourself before you commit, because the local PHP is not 8.1.
 
 ## Repository shape
 
@@ -79,3 +79,5 @@ Then activate the plugin on the Plugins screen at http://127.0.0.1:9400/wp-admin
 `npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through `wp-plugin-version-updater.js`. If the header and `package.json` disagree, `PluginBootstrapTest` fails. For the first release, run `npm run release -- --first-release`, so that the version stays 0.1.0.
 
 The zip ships the paths in the `files` array of `package.json`, plus `package.json` itself, which npm always includes. `CHANGELOG.md` is in that list, but the first `npm run release` creates it. Until then, the zip build skips it without an error.
+
+The `package` job in `ci.yml` builds the zip and makes sure that it holds the required files and no development files. If you add a path to `files` or a development file at the repository root, update the lists in that job.
