@@ -76,8 +76,10 @@ Then activate the plugin on the Plugins screen at http://127.0.0.1:9400/wp-admin
 
 `commit-and-tag-version` reads Conventional Commit messages to choose the version bump: `fix:` gives a patch, `feat:` gives a minor version, and `chore:`, `build:`, `docs:` and `test:` give no bump. The commit prefix therefore changes the release.
 
-`npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through `wp-plugin-version-updater.js`. If the header and `package.json` disagree, `PluginBootstrapTest` fails. For the first release, run `npm run release -- --first-release`, so that the version stays 0.1.0.
+`npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through `wp-plugin-version-updater.js`. If the header and `package.json` disagree, `PluginBootstrapTest` fails.
 
-The zip ships the paths in the `files` array of `package.json`, plus `package.json` itself, which npm always includes. `CHANGELOG.md` is in that list, but the first `npm run release` creates it. Until then, the zip build skips it without an error.
+The zip ships the paths in the `files` array of `package.json`, plus `package.json` itself, which npm always includes. `CHANGELOG.md` is in that list, and `npm run release` updates it.
 
 The `package` job in `ci.yml` builds the zip and makes sure that it holds the required files and no development files. If you add a path to `files` or a development file at the repository root, update the lists in that job.
+
+`npm run release` creates a `v*.*.*` tag but does not push it. Push the tag with `git push --follow-tags`. The tag runs `.github/workflows/release.yml`, which calls the shared `ucsc/actions` release workflow. That workflow builds `ucsc-travel-functionality.zip` and publishes a GitHub Release with the ZIP attached.
