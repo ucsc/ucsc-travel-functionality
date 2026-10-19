@@ -1,6 +1,6 @@
 # Roadmap
 
-Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-16 (v0.1.0, not yet released).
+Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-19 (v0.1.0, not yet released).
 
 This is a technical roadmap, not a product plan. The items come from testing the plugin in WordPress Playground and from comparing it with the `ucsc-giving-functionality` plugin. The order shows dependency and risk, not committed dates. The site owners decide what the plugin does next.
 
@@ -14,6 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| [#3](https://github.com/ucsc/ucsc-travel-functionality/pull/3) | `ci.yml`: PHPCS and PHPUnit on PHP 8.1 and 8.4, and a zip content check |
 | `7a67992`, `3733f08` | `README.md` and the GPL v3 `LICENSE` |
 | [#1](https://github.com/ucsc/ucsc-travel-functionality/pull/1) | This roadmap updated for the GitHub remote |
 | `535e043` | `CLAUDE.md` and this roadmap |
@@ -40,15 +41,14 @@ Text that a theme hardcodes in its templates or block patterns, such as `__( 'Ca
 
 ## 3. Repository setup
 
-The GitHub repository exists, and its URL matches the plugin header and `package.json`. Each item below copies something the giving plugin already has.
+The GitHub repository exists, and its URL matches the plugin header and `package.json`. Each item below copies something the giving plugin already has. `ci.yml` is done.
 
-1. Add `.github/workflows/ci.yml`, which runs `composer lint` and `composer test` on PHP 8.1 and 8.4 and makes sure that the zip contents are correct. The giving plugin's version needs only new names and paths.
-2. Add `.github/workflows/release.yml`, which calls the shared `ucsc/actions` release workflow on `v*.*.*` tags. Set `zip-name` to `ucsc-travel-functionality.zip`, because this package name has no `-plugin` suffix.
-3. Make the first release with `npm run release -- --first-release`, so that the version stays 0.1.0.
+1. Add `.github/workflows/release.yml`, which calls the shared `ucsc/actions` release workflow on `v*.*.*` tags. Set `zip-name` to `ucsc-travel-functionality.zip`, because this package name has no `-plugin` suffix.
+2. Make the first release with `npm run release -- --first-release`, so that the version stays 0.1.0.
 
 ## 4. Commit a Playground blueprint
 
-Testing in real WordPress uses WordPress Playground. The blueprint used so far lives outside the repository. It activates the plugin, logs in, and creates a test post in an "Antarctica" category so that a category archive has content. A committed blueprint, for example `blueprint.json`, makes that test the same for each developer. Add it to the excluded paths in the zip check of `ci.yml`.
+Testing in real WordPress uses WordPress Playground. The blueprint used so far lives outside the repository. It activates the plugin, logs in, and creates a test post in an "Antarctica" category so that a category archive has content. A committed blueprint, for example `blueprint.json`, makes that test the same for each developer. The zip check in `ci.yml` already forbids `blueprint.json`. If the blueprint has a different name, update that list.
 
 ## 5. Maintenance
 
