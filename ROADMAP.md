@@ -1,6 +1,6 @@
 # Roadmap
 
-Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-19 (v0.1.0 tagged, GitHub Release not yet published).
+Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-19 (v0.1.0 released).
 
 This is a technical roadmap, not a product plan. The items come from testing the plugin in WordPress Playground and from comparing it with the `ucsc-giving-functionality` plugin. The order shows dependency and risk, not committed dates. The site owners decide what the plugin does next.
 
@@ -15,7 +15,8 @@ Landed work, newest first:
 | Commit or PR | Change |
 | --- | --- |
 | [#4](https://github.com/ucsc/ucsc-travel-functionality/pull/4) | `release.yml`: calls the shared `ucsc/actions` release workflow on version tags |
-| `aa3c40e` | First release commit: version 0.1.0, `CHANGELOG.md`, and the `v0.1.0` tag |
+| [v0.1.0](https://github.com/ucsc/ucsc-travel-functionality/releases/tag/v0.1.0) | First GitHub Release, with `ucsc-travel-functionality.zip`. The tag is on `1e3095c`, so that `release.yml` ran. |
+| `aa3c40e` | First release commit: version 0.1.0 and `CHANGELOG.md` |
 | [#3](https://github.com/ucsc/ucsc-travel-functionality/pull/3) | `ci.yml`: PHPCS and PHPUnit on PHP 8.1 and 8.4, and a zip content check |
 | `7a67992`, `3733f08` | `README.md` and the GPL v3 `LICENSE` |
 | [#1](https://github.com/ucsc/ucsc-travel-functionality/pull/1) | This roadmap updated for the GitHub remote |
@@ -41,17 +42,11 @@ These need a decision from the site owners before any code changes.
 
 Text that a theme hardcodes in its templates or block patterns, such as `__( 'Categories', 'theme' )`, does not use the taxonomy labels. Neither filter changes it. The fix depends on which theme the Travel site uses, and that is not recorded yet. If the site uses `ucsc-2022`, check its templates and patterns for "Categor" before launch.
 
-## 3. Publish the v0.1.0 release
-
-`ci.yml`, `release.yml` and the first release commit are done. The `v0.1.0` tag went up before `release.yml` existed, so no workflow ran, and the tag has no GitHub Release. A manual run of `release.yml` cannot fix this, because GitHub reads the workflow file from the tagged commit.
-
-When `release.yml` is on `main`, delete `v0.1.0` on GitHub and push it again on the merge commit. `release.yml` then publishes the release and `ucsc-travel-functionality.zip`. When the release exists, delete this section.
-
-## 4. Commit a Playground blueprint
+## 3. Commit a Playground blueprint
 
 Testing in real WordPress uses WordPress Playground. The blueprint used so far lives outside the repository. It activates the plugin, logs in, and creates a test post in an "Antarctica" category so that a category archive has content. A committed blueprint, for example `blueprint.json`, makes that test the same for each developer. The zip check in `ci.yml` already forbids `blueprint.json`. If the blueprint has a different name, update that list.
 
-## 5. Maintenance
+## 4. Maintenance
 
 - Capture the core label fixture again after each WordPress release that adds a taxonomy label. `CLAUDE.md` gives the method. The plain `get_taxonomy()` read returns filtered values and gives a false pass.
 - Update the doc's label list to match the plugin, or add a note to the doc that the plugin is now the source of truth.
