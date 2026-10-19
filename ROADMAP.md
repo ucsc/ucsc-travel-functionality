@@ -1,6 +1,6 @@
 # Roadmap
 
-Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-19 (v0.1.0, not yet released).
+Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-19 (v0.1.0 tagged, GitHub Release not yet published).
 
 This is a technical roadmap, not a product plan. The items come from testing the plugin in WordPress Playground and from comparing it with the `ucsc-giving-functionality` plugin. The order shows dependency and risk, not committed dates. The site owners decide what the plugin does next.
 
@@ -14,6 +14,8 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| [#4](https://github.com/ucsc/ucsc-travel-functionality/pull/4) | `release.yml`: calls the shared `ucsc/actions` release workflow on version tags |
+| `aa3c40e` | First release commit: version 0.1.0, `CHANGELOG.md`, and the `v0.1.0` tag |
 | [#3](https://github.com/ucsc/ucsc-travel-functionality/pull/3) | `ci.yml`: PHPCS and PHPUnit on PHP 8.1 and 8.4, and a zip content check |
 | `7a67992`, `3733f08` | `README.md` and the GPL v3 `LICENSE` |
 | [#1](https://github.com/ucsc/ucsc-travel-functionality/pull/1) | This roadmap updated for the GitHub remote |
@@ -39,12 +41,11 @@ These need a decision from the site owners before any code changes.
 
 Text that a theme hardcodes in its templates or block patterns, such as `__( 'Categories', 'theme' )`, does not use the taxonomy labels. Neither filter changes it. The fix depends on which theme the Travel site uses, and that is not recorded yet. If the site uses `ucsc-2022`, check its templates and patterns for "Categor" before launch.
 
-## 3. Repository setup
+## 3. Publish the v0.1.0 release
 
-The GitHub repository exists, and its URL matches the plugin header and `package.json`. Each item below copies something the giving plugin already has. `ci.yml` is done.
+`ci.yml`, `release.yml` and the first release commit are done. The `v0.1.0` tag went up before `release.yml` existed, so no workflow ran, and the tag has no GitHub Release. A manual run of `release.yml` cannot fix this, because GitHub reads the workflow file from the tagged commit.
 
-1. Add `.github/workflows/release.yml`, which calls the shared `ucsc/actions` release workflow on `v*.*.*` tags. Set `zip-name` to `ucsc-travel-functionality.zip`, because this package name has no `-plugin` suffix.
-2. Make the first release with `npm run release -- --first-release`, so that the version stays 0.1.0.
+When `release.yml` is on `main`, delete `v0.1.0` on GitHub and push it again on the merge commit. `release.yml` then publishes the release and `ucsc-travel-functionality.zip`. When the release exists, delete this section.
 
 ## 4. Commit a Playground blueprint
 

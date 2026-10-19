@@ -1,0 +1,32 @@
+# Release. Runs when a version tag is pushed, or by hand from the Actions tab.
+# To run it by hand, select a tag, not a branch, because a GitHub Release
+# needs a tag.
+#
+# The job calls the shared ucsc/actions release workflow. That workflow
+# installs the dependencies, builds the ZIP with `wp-scripts plugin-zip`, and
+# creates a GitHub Release with the ZIP attached. `npm run release` creates
+# the tag. ci.yml checks the ZIP contents on each pull request.
+
+name: Build and release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - 'v*.*.*-rc.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: ucsc/actions/.github/workflows/release.yml@v1
+    with:
+      # plugin-zip names the ZIP after `name` in package.json. That name has
+      # no `-plugin` suffix, unlike the giving plugin's.
+      zip-name: ucsc-travel-functionality.zip
+      # The shared workflow runs `npm run build` by default, and this plugin
+      # has no build script. `zip` runs plugin-zip. The shared workflow then
+      # runs plugin-zip again, which writes the same ZIP over the first one.
+      build-command: 'zip'
