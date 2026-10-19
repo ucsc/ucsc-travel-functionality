@@ -14,7 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
-| `ci/pr-checks` branch | `ci.yml`: PHPCS and PHPUnit on PHP 8.1 and 8.4, and a zip content check |
+| [#3](https://github.com/ucsc/ucsc-travel-functionality/pull/3) | `ci.yml`: PHPCS and PHPUnit on PHP 8.1 and 8.4, and a zip content check |
 | `7a67992`, `3733f08` | `README.md` and the GPL v3 `LICENSE` |
 | [#1](https://github.com/ucsc/ucsc-travel-functionality/pull/1) | This roadmap updated for the GitHub remote |
 | `535e043` | `CLAUDE.md` and this roadmap |
