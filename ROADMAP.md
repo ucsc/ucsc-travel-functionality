@@ -14,6 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| [#7](https://github.com/ucsc/ucsc-travel-functionality/pull/7) | Local test sites replace the planned Playground blueprint. Git and the zip check exclude local environment files. |
 | [#4](https://github.com/ucsc/ucsc-travel-functionality/pull/4) | `release.yml`: calls the shared `ucsc/actions` release workflow on version tags |
 | [v0.1.0](https://github.com/ucsc/ucsc-travel-functionality/releases/tag/v0.1.0) | First GitHub Release, with `ucsc-travel-functionality.zip`. The tag is on `1e3095c`, so that `release.yml` ran. |
 | `aa3c40e` | First release commit: version 0.1.0 and `CHANGELOG.md` |
