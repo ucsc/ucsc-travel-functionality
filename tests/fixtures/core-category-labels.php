@@ -2,9 +2,9 @@
 /**
  * Core's default labels for the Category taxonomy.
  *
- * Captured from WordPress 7.1.3 with the plugin's label filter removed, by
- * building a new WP_Taxonomy( 'category', 'post', array( 'hierarchical' => true ) )
- * and exporting its labels. Recapture when a WordPress release adds a label,
+ * Captured from WordPress 7.1.3 by tests/tools/capture-core-labels.php,
+ * which removes the plugin's label filter and exports the labels of a new
+ * WP_Taxonomy. Run that script again when a WordPress release adds a label,
  * so CategoryLabelsTest keeps checking every label core ships.
  *
  * @package ucsc-travel-functionality
