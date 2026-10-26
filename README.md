@@ -16,6 +16,8 @@ The plugin changes how the Category taxonomy is labeled. It does not change how 
 - The admin, the block editor, and the Site Editor show "Expedition" and "Expeditions" in place of "Category" and "Categories". This includes the Posts menu, the Expeditions screen, the post sidebar, and the filter on the Posts list.
 - Category archive headings show "Expedition: Antarctica" in place of "Category: Antarctica". This applies to most themes and to the Query Title block.
 
+The plugin also adds an information page at Settings, UCSC Travel Functionality. The page lists these changes. The Plugins screen has a Settings link to it.
+
 These things stay the same:
 
 - The taxonomy name stays `category`. Existing posts, terms, and code that use `category` keep working.

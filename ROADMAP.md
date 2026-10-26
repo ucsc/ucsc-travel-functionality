@@ -51,4 +51,4 @@ After each WordPress release that adds a taxonomy label, run `tests/tools/captur
 - A `gettext` filter (a hook that replaces translated strings) for the core text on the Expeditions admin screen. The help tab, the hint under the Parent field, and the converter link still say "Categories", because core writes them into `edit-tags.php`. Only editors and administrators see that screen. The filter must match core's exact English. If core rewords a string, the filter stops working without an error.
 - Setting the URL base in plugin code. To change `/category/`, an administrator sets Settings, Permalinks, Category base on each site. A `register_taxonomy_args` filter needs a rewrite flush and overrides that setting without any sign on the Permalinks screen. On a live site, old `/category/` links need redirects with either method.
 - Registering a new taxonomy to replace Category. The rename is for display only, so existing posts, terms, and links keep working.
-- A class-based or namespaced rewrite, or a build step. The plugin is two small PHP files.
+- A class-based or namespaced rewrite, or a build step. The plugin is three small PHP files.
