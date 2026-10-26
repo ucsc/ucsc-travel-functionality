@@ -14,6 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| [#10](https://github.com/ucsc/ucsc-travel-functionality/pull/10) | The `CLAUDE.md` intro line is in plain English, so the writing hook no longer flags it. |
 | [#9](https://github.com/ucsc/ucsc-travel-functionality/pull/9) | `tests/tools/capture-core-labels.php` recaptures the core label fixture with one `wp eval-file`. |
 | [#8](https://github.com/ucsc/ucsc-travel-functionality/pull/8) | The `add_new_item` label says "Add Expedition", to match core. The open label questions are closed. |
 | [#7](https://github.com/ucsc/ucsc-travel-functionality/pull/7) | Local test sites replace the planned Playground blueprint. Git and the zip check exclude local environment files. |
