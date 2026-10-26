@@ -33,7 +33,7 @@ function ucsctravel_filter_category_labels( $labels ) {
 	$labels->edit_item             = __( 'Edit Expedition', 'ucsctravel' );
 	$labels->view_item             = __( 'View Expedition', 'ucsctravel' );
 	$labels->update_item           = __( 'Update Expedition', 'ucsctravel' );
-	$labels->add_new_item          = __( 'Add New Expedition', 'ucsctravel' );
+	$labels->add_new_item          = __( 'Add Expedition', 'ucsctravel' );
 	$labels->new_item_name         = __( 'New Expedition Name', 'ucsctravel' );
 	$labels->parent_item           = __( 'Parent Expedition', 'ucsctravel' );
 	$labels->parent_item_colon     = __( 'Parent Expedition:', 'ucsctravel' );
