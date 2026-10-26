@@ -14,6 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| [#12](https://github.com/ucsc/ucsc-travel-functionality/pull/12) | Settings, UCSC Travel Functionality is an information page that lists what the plugin changes. The Plugins screen links to it. |
 | [#10](https://github.com/ucsc/ucsc-travel-functionality/pull/10) | The `CLAUDE.md` intro line is in plain English, so the writing hook no longer flags it. |
 | [#9](https://github.com/ucsc/ucsc-travel-functionality/pull/9) | `tests/tools/capture-core-labels.php` recaptures the core label fixture with one `wp eval-file`. |
 | [#8](https://github.com/ucsc/ucsc-travel-functionality/pull/8) | The `add_new_item` label says "Add Expedition", to match core. The open label questions are closed. |
