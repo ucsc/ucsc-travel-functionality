@@ -1,6 +1,6 @@
 # Roadmap
 
-Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-19 (v0.1.0 released).
+Engineering roadmap for the UCSC Travel Functionality plugin, as of 2026-10-26 (v0.1.0 released).
 
 This is a technical roadmap, not a product plan. The items come from testing the plugin in WordPress Playground and from comparing it with the `ucsc-giving-functionality` plugin. The order shows dependency and risk, not committed dates. The site owners decide what the plugin does next.
 
@@ -42,11 +42,7 @@ These need a decision from the site owners before any code changes.
 
 Text that a theme hardcodes in its templates or block patterns, such as `__( 'Categories', 'theme' )`, does not use the taxonomy labels. Neither filter changes it. The fix depends on which theme the Travel site uses, and that is not recorded yet. If the site uses `ucsc-2022`, check its templates and patterns for "Categor" before launch.
 
-## 3. Commit a Playground blueprint
-
-Testing in real WordPress uses WordPress Playground. The blueprint used so far lives outside the repository. It activates the plugin, logs in, and creates a test post in an "Antarctica" category so that a category archive has content. A committed blueprint, for example `blueprint.json`, makes that test the same for each developer. The zip check in `ci.yml` already forbids `blueprint.json`. If the blueprint has a different name, update that list.
-
-## 4. Maintenance
+## 3. Maintenance
 
 - Capture the core label fixture again after each WordPress release that adds a taxonomy label. `CLAUDE.md` gives the method. The plain `get_taxonomy()` read returns filtered values and gives a false pass.
 - Update the doc's label list to match the plugin, or add a note to the doc that the plugin is now the source of truth.
@@ -55,6 +51,7 @@ Testing in real WordPress uses WordPress Playground. The blueprint used so far l
 
 ## Non-goals
 
-- Tests inside a real WordPress test suite. The unit suite stubs the few WordPress functions the plugin calls, and Playground covers real WordPress behavior by hand. The plugin has no ACF or theme dependency. If the plugin grows, this choice can change.
+- Tests inside a real WordPress test suite. The unit suite stubs the few WordPress functions the plugin calls, and each developer checks real WordPress behavior by hand in a local site. The plugin has no ACF or theme dependency. If the plugin grows, this choice can change.
+- A shared local environment in the repository, such as a Playground `blueprint.json` or a `.wp-env.json`. Each developer sets up a local WordPress site and maps this folder into it. The primary developer uses wp-env, with a `.wp-env.json` in a separate site folder.
 - Registering a new taxonomy to replace Category. The rename is for display only, so existing posts, terms, and links keep working.
 - A class-based or namespaced rewrite, or a build step. The plugin is two small PHP files.
