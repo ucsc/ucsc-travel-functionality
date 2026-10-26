@@ -79,6 +79,7 @@ class CategoryLabelsTest extends TestCase {
 		$this->assertSame( 'Expeditions', $labels->menu_name );
 		$this->assertSame( 'Expedition Archives', $labels->template_name );
 		$this->assertSame( 'Filter by expedition', $labels->filter_by_item );
+		$this->assertSame( 'Add Expedition', $labels->add_new_item );
 	}
 
 	/**
