@@ -119,7 +119,7 @@ jobs:
           fi
 
           # Development files. None of these may ship to a WordPress site.
-          forbidden="^$root/(tests/|node_modules/|vendor/|\.github/|phpunit\.xml\.dist$|\.phpcs\.xml\.dist$|composer\.(json|lock)$|package-lock\.json$|wp-plugin-version-updater\.js$|CLAUDE\.md$|ROADMAP\.md$|blueprint\.json$)"
+          forbidden="^$root/(tests/|node_modules/|vendor/|\.github/|phpunit\.xml\.dist$|\.phpcs\.xml\.dist$|composer\.(json|lock)$|package-lock\.json$|wp-plugin-version-updater\.js$|CLAUDE\.md$|ROADMAP\.md$|blueprint\.json$|\.wp-env(\.override)?\.json$)"
           if printf '%s\n' "$entries" | grep -Eq "$forbidden"; then
             echo "::error::ZIP contains files that must not ship:"
             printf '%s\n' "$entries" | grep -E "$forbidden"

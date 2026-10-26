@@ -55,7 +55,9 @@ The PHPUnit suite stubs WordPress and does not run inside it. `tests/bootstrap.p
 
 `tests/fixtures/core-category-labels.php` holds core's default Category labels from WordPress 7.1.3. When a WordPress release adds a label, capture the labels again. Do not read `get_taxonomy( 'category' )->labels` to do this: WordPress builds the labels at registration and keeps them on the taxonomy object, so you get the filtered values even after `remove_filter()`. Instead, in a running WordPress, remove the plugin's filter, build `new WP_Taxonomy( 'category', 'post', array( 'hierarchical' => true ) )`, and export its `labels`.
 
-To check behavior in real WordPress, start WordPress Playground with this folder mounted. The site data is temporary.
+To check behavior in real WordPress, use a local WordPress site that maps this folder to `wp-content/plugins/ucsc-travel-functionality`. Each developer sets up their own site. Do not commit a local environment file, such as `.wp-env.json` or a Playground `blueprint.json`, to this repository. The primary developer uses wp-env, with a `.wp-env.json` in a separate site folder.
+
+If no local site is available, start a temporary WordPress Playground site with this folder mounted:
 
 ```bash
 npx @wp-playground/cli@latest server --login \
