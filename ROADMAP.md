@@ -28,7 +28,7 @@ Landed work, newest first:
 
 The label code came from a doc: [Renaming Category in WordPress](https://claude.ai/artifact/3Si5iuGSdTRNnGES9zqSNS)
 
-A Playground test on WordPress 7.1.3 found six labels that the doc did not set. The plugin sets them too. The doc still has the shorter list.
+A Playground test on WordPress 7.1.3 found six labels that the doc did not set. The plugin sets them too. On 2026-10-26 the doc got the six labels and a note that this repository is the source of truth.
 
 ---
 
@@ -38,8 +38,7 @@ Text that a theme hardcodes in its templates or block patterns, such as `__( 'Ca
 
 ## 2. Maintenance
 
-- Capture the core label fixture again after each WordPress release that adds a taxonomy label. `CLAUDE.md` gives the method. The plain `get_taxonomy()` read returns filtered values and gives a false pass.
-- Update the doc's label list to match the plugin, or add a note to the doc that the plugin is now the source of truth.
+After each WordPress release that adds a taxonomy label, run `tests/tools/capture-core-labels.php` to capture the core label fixture again. `CLAUDE.md` gives the command.
 
 ---
 

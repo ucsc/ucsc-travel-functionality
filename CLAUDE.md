@@ -53,7 +53,13 @@ The PHPUnit suite stubs WordPress and does not run inside it. `tests/bootstrap.p
 - Values that tests change, such as the return value of `is_category()`, live on `UCSCTravel_Test_State`. Call `reset()` in `setUp()`.
 - If a new plugin function calls a WordPress function, add a stub for that function to `tests/stubs.php`.
 
-`tests/fixtures/core-category-labels.php` holds core's default Category labels from WordPress 7.1.3. When a WordPress release adds a label, capture the labels again. Do not read `get_taxonomy( 'category' )->labels` to do this: WordPress builds the labels at registration and keeps them on the taxonomy object, so you get the filtered values even after `remove_filter()`. Instead, in a running WordPress, remove the plugin's filter, build `new WP_Taxonomy( 'category', 'post', array( 'hierarchical' => true ) )`, and export its `labels`.
+`tests/fixtures/core-category-labels.php` holds core's default Category labels. Its header names the WordPress version. When a WordPress release adds a label, run `tests/tools/capture-core-labels.php` in a local site with the plugin active. The script rewrites the fixture. With wp-env, run this from the site folder:
+
+```bash
+npx wp-env run cli wp eval-file wp-content/plugins/ucsc-travel-functionality/tests/tools/capture-core-labels.php
+```
+
+Do not capture the labels by reading `get_taxonomy( 'category' )->labels`. WordPress builds the labels at registration and keeps them on the taxonomy object, so you get the filtered values even after `remove_filter()`. The script removes the filter and builds a new `WP_Taxonomy` instead. `CaptureCoreLabelsTest` makes sure that the script output matches the committed fixture format.
 
 To check behavior in real WordPress, use a local WordPress site that maps this folder to `wp-content/plugins/ucsc-travel-functionality`. Each developer sets up their own site. Do not commit a local environment file, such as `.wp-env.json` or a Playground `blueprint.json`, to this repository. The primary developer uses wp-env, with a `.wp-env.json` in a separate site folder.
 
