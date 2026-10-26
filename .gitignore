@@ -16,7 +16,9 @@
 
 # Local environments
 CLAUDE.local.md
+.wp-env.json
 .wp-env.override.json
+blueprint.json
 .env
 .env.*
 
