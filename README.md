@@ -44,14 +44,22 @@ npm run zip           # Build ucsc-travel-functionality.zip
 
 The PHPUnit tests replace the WordPress functions the plugin calls with simple stand-ins. They need no WordPress install and no database.
 
-To test the plugin in real WordPress, start a temporary site with [WordPress Playground](https://wordpress.github.io/wordpress-playground/). Run this command from the plugin folder:
+To test the plugin in real WordPress, use your own local WordPress site. The repository does not include a local environment file. Map this folder to `wp-content/plugins/ucsc-travel-functionality` in the site, then activate the plugin on the Plugins screen.
+
+For example, with [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/), put a `.wp-env.json` in a separate site folder and list the path to this folder:
+
+```json
+{
+  "plugins": [ "../ucsc-travel-functionality" ]
+}
+```
+
+For a temporary site with no setup, run [WordPress Playground](https://wordpress.github.io/wordpress-playground/) from the plugin folder:
 
 ```bash
 npx @wp-playground/cli@latest server --login \
   --mount="$PWD:/wordpress/wp-content/plugins/ucsc-travel-functionality"
 ```
-
-Then open http://127.0.0.1:9400/wp-admin/plugins.php and activate the plugin. If you change the code, reload the page to see the change. If the server stops, the site data is lost.
 
 ## Releases
 
