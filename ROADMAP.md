@@ -31,19 +31,11 @@ A Playground test on WordPress 7.1.3 found six labels that the doc did not set. 
 
 ---
 
-## 1. Decide the open label questions
-
-These need a decision from the site owners before any code changes.
-
-- Core text on the Expeditions admin screen. The help tab, the hint under the Parent field, and the categories-to-tags converter link still say "Categories". Core writes these strings into `edit-tags.php` for the `category` taxonomy, so no label filter reaches them. A `gettext` filter (a hook that can replace translated strings) can change them. It must run only on that screen and only for the `default` text domain, because an unscoped `gettext` filter runs on every translated string.
-- The "Add" wording. Core now uses "Add Category". The plugin uses "Add New Expedition", from the doc. To match core, change `add_new_item` to "Add Expedition".
-- The URL base. Category archives are still at `/category/<slug>/`. To change the base, set it under Settings, Permalinks, Category base, or set `$args['rewrite']['slug']` in a `register_taxonomy_args` filter. A code change needs a rewrite flush, and existing links need redirects.
-
-## 2. Theme strings
+## 1. Theme strings
 
 Text that a theme hardcodes in its templates or block patterns, such as `__( 'Categories', 'theme' )`, does not use the taxonomy labels. Neither filter changes it. The fix depends on which theme the Travel site uses, and that is not recorded yet. If the site uses `ucsc-2022`, check its templates and patterns for "Categor" before launch.
 
-## 3. Maintenance
+## 2. Maintenance
 
 - Capture the core label fixture again after each WordPress release that adds a taxonomy label. `CLAUDE.md` gives the method. The plain `get_taxonomy()` read returns filtered values and gives a false pass.
 - Update the doc's label list to match the plugin, or add a note to the doc that the plugin is now the source of truth.
@@ -54,5 +46,7 @@ Text that a theme hardcodes in its templates or block patterns, such as `__( 'Ca
 
 - Tests inside a real WordPress test suite. The unit suite stubs the few WordPress functions the plugin calls, and each developer checks real WordPress behavior by hand in a local site. The plugin has no ACF or theme dependency. If the plugin grows, this choice can change.
 - A shared local environment in the repository, such as a Playground `blueprint.json` or a `.wp-env.json`. Each developer sets up a local WordPress site and maps this folder into it. The primary developer uses wp-env, with a `.wp-env.json` in a separate site folder.
+- A `gettext` filter (a hook that replaces translated strings) for the core text on the Expeditions admin screen. The help tab, the hint under the Parent field, and the converter link still say "Categories", because core writes them into `edit-tags.php`. Only editors and administrators see that screen. The filter must match core's exact English. If core rewords a string, the filter stops working without an error.
+- Setting the URL base in plugin code. To change `/category/`, an administrator sets Settings, Permalinks, Category base on each site. A `register_taxonomy_args` filter needs a rewrite flush and overrides that setting without any sign on the Permalinks screen. On a live site, old `/category/` links need redirects with either method.
 - Registering a new taxonomy to replace Category. The rename is for display only, so existing posts, terms, and links keep working.
 - A class-based or namespaced rewrite, or a build step. The plugin is two small PHP files.
