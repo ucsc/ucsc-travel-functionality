@@ -1,6 +1,6 @@
 {
   "name": "ucsc-travel-functionality",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Custom functionality plugin for the UCSC Travel site",
   "scripts": {
     "release": "commit-and-tag-version",
