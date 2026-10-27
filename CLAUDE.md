@@ -30,7 +30,7 @@ npm run release       # Bump the version, update CHANGELOG.md, commit and tag
 
 This is a standalone plugin repository, not a site tree. The bootstrap is `plugin.php` at the repository root. The repository has no `wp-content/` folder, so tools that look for `wp-content/plugins/*` find no plugin here. The `detect_plugins.mjs` skill script also finds no plugin. Its header regex does not match a line that starts with ` * `.
 
-The code is procedural. `plugin.php` defines `UCSCTRAVEL_PLUGIN_DIR` and `UCSCTRAVEL_PLUGIN_BASE` and includes the files in `lib/functions/`. Each included file registers its hooks at file scope with `add_filter()`. The repository has no classes, namespaces, autoloader, or build step. Composer and npm are for development only, and `vendor/` and `node_modules/` never ship.
+The code is procedural. `plugin.php` defines `UCSCTRAVEL_PLUGIN_DIR` and `UCSCTRAVEL_PLUGIN_BASE` and includes the files in `lib/functions/`. Each included file registers its hooks at file scope with `add_filter()` or `add_action()`. The repository has no classes, namespaces, autoloader, or build step. Composer and npm are for development only, and `vendor/` and `node_modules/` never ship.
 
 The plugin has no runtime dependency. It does not require ACF or a specific theme.
 
@@ -42,6 +42,8 @@ The plugin has no runtime dependency. It does not require ACF or a specific them
 - `ucsctravel_filter_category_archive_title_prefix()` on `get_the_archive_title_prefix` replaces the "Category:" archive heading. Core's `get_the_archive_title()` hardcodes that prefix and ignores the labels, so the label filter cannot reach it.
 
 The label filter must set every label that core ships with "category" in its text. Core adds labels over time. The filter originally came from a doc that missed six of them, for example `filter_by_item` (the Posts list dropdown) and `template_name` (the Site Editor). `CategoryLabelsTest::test_no_label_still_says_category` exists to catch the next missing label.
+
+`lib/functions/settings.php` adds an information page at Settings, UCSC Travel Functionality, and a Settings link in the plugin row on the Plugins screen. The page lists what the plugin changes. The plugin has no options, so the page has no form and registers no settings. The page reads the name, version and description from the `plugin.php` header with `get_plugin_data()`, with markup off. With markup on, core adds "By UC Santa Cruz" to the description. If the plugin behavior changes, update the lists on the page.
 
 Some "Categories" text on the Expeditions admin screen comes from core, not from labels: the help tab, the hint under the Parent field, and the converter link. Core writes those strings into `edit-tags.php` for the `category` taxonomy, so no label filter can change them.
 

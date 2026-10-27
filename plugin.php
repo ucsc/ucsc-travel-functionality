@@ -26,3 +26,8 @@ define( 'UCSCTRAVEL_PLUGIN_BASE', plugin_basename( __FILE__ ) ); // Plugin base 
 if ( file_exists( UCSCTRAVEL_PLUGIN_DIR . 'lib/functions/taxonomies.php' ) ) {
 	require_once UCSCTRAVEL_PLUGIN_DIR . 'lib/functions/taxonomies.php';
 }
+
+// Include settings page functions.
+if ( file_exists( UCSCTRAVEL_PLUGIN_DIR . 'lib/functions/settings.php' ) ) {
+	require_once UCSCTRAVEL_PLUGIN_DIR . 'lib/functions/settings.php';
+}

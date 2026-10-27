@@ -44,6 +44,17 @@ class PluginBootstrapTest extends TestCase {
 	}
 
 	/**
+	 * The include in plugin.php loaded the settings page functions.
+	 *
+	 * @return void
+	 */
+	public function test_settings_functions_are_loaded() {
+		$this->assertTrue( function_exists( 'ucsctravel_add_settings_page' ) );
+		$this->assertTrue( function_exists( 'ucsctravel_render_settings_page' ) );
+		$this->assertTrue( function_exists( 'ucsctravel_settings_link' ) );
+	}
+
+	/**
 	 * The Version header in plugin.php matches package.json.
 	 *
 	 * `npm run release` keeps the two in step through
