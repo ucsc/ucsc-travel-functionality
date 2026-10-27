@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ucsc/ucsc-travel-functionality#readme",
   "devDependencies": {
+    "@ucsantacruz/wordpress-version-updater": "^1.1.0",
     "@wordpress/scripts": "^34.0.0",
     "commit-and-tag-version": "^12.7.1"
   },
@@ -45,7 +46,7 @@
       },
       {
         "filename": "plugin.php",
-        "updater": "wp-plugin-version-updater.js"
+        "updater": "node_modules/@ucsantacruz/wordpress-version-updater/index.js"
       }
     ]
   }
