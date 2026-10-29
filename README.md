@@ -20,7 +20,7 @@ The plugin also adds an information page at Settings, UCSC Travel Functionality.
 
 ## Try it in your browser
 
-[Open the plugin in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ucsc/ucsc-travel-functionality/main/blueprint.json). Playground runs a temporary WordPress site in your browser, with the plugin from the `main` branch and two sample Expeditions.
+[Open the plugin in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ucsc/ucsc-travel-functionality/main/blueprint.json). Playground runs a temporary WordPress site in your browser, with the plugin from the `main` branch, the UCSC 2022 theme, the UCSC Custom Functionality plugin, and two sample Expeditions.
 
 These things stay the same:
 
@@ -67,7 +67,7 @@ npx @wp-playground/cli@latest server --blueprint=blueprint.json \
   --mount="$PWD:/wordpress/wp-content/plugins/ucsc-travel-functionality"
 ```
 
-`blueprint.json` logs in, activates the plugin, and adds two sample Expeditions. The site uses your working copy of the plugin, and code changes appear on reload.
+`blueprint.json` logs in, installs the UCSC 2022 theme and the UCSC Custom Functionality plugin, activates this plugin, and adds two sample Expeditions. The site uses your working copy of the plugin, and code changes appear on reload.
 
 ## Releases
 
