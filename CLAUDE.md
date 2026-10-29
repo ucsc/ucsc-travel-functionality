@@ -72,9 +72,9 @@ npx @wp-playground/cli@latest server --blueprint=blueprint.json \
   --mount="$PWD:/wordpress/wp-content/plugins/ucsc-travel-functionality"
 ```
 
-The blueprint logs in, activates the plugin, adds two sample Expeditions, and opens the Expeditions screen. Code changes appear on reload, because the folder is mounted live.
+The blueprint logs in, installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases, activates this plugin, adds two sample Expeditions, and opens the Expeditions screen. ACF PRO is not installed, so the ACF features of the theme and of UCSC Custom Functionality do not work in the Playground site. Code changes appear on reload, because the folder is mounted live.
 
-The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlreadyInstalled` set to `skip`. With the CLI, the mounted folder already exists, so the step skips the GitHub copy and uses the working copy. Keep `skip`. Any other value writes the GitHub copy into the mounted working copy. `BlueprintTest` checks this value and the target folder name. The blueprint does not ship in the zip.
+The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlreadyInstalled` set to `skip`. With the CLI, the mounted folder already exists, so the step skips the GitHub copy and uses the working copy. Keep `skip`. Any other value writes the GitHub copy into the mounted working copy. `BlueprintTest` checks this value, the target folder name, and the UCSC 2022 theme step. The blueprint does not ship in the zip.
 
 ## Conventions
 

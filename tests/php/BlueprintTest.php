@@ -34,16 +34,53 @@ class BlueprintTest extends TestCase {
 	/**
 	 * Returns the step that installs this plugin.
 	 *
+	 * The blueprint installs other plugins too, so the step is found by
+	 * this repository's URL.
+	 *
 	 * @return array
 	 */
 	private function install_step() {
 		foreach ( $this->blueprint['steps'] as $step ) {
-			if ( 'installPlugin' === $step['step'] ) {
+			if (
+				'installPlugin' === $step['step']
+				&& 'https://github.com/ucsc/ucsc-travel-functionality' === ( $step['pluginData']['url'] ?? '' )
+			) {
 				return $step;
 			}
 		}
 
-		$this->fail( 'blueprint.json has no installPlugin step.' );
+		$this->fail( 'blueprint.json has no installPlugin step for this repository.' );
+	}
+
+	/**
+	 * Returns the step that installs the named theme.
+	 *
+	 * @param string $folder The theme folder name.
+	 * @return array|null
+	 */
+	private function theme_step( $folder ) {
+		foreach ( $this->blueprint['steps'] as $step ) {
+			if ( 'installTheme' === $step['step'] && ( $step['options']['targetFolderName'] ?? '' ) === $folder ) {
+				return $step;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * The blueprint installs and activates the UCSC 2022 theme.
+	 *
+	 * The Travel site theme strings (ROADMAP item 1) show only with this
+	 * theme active.
+	 *
+	 * @return void
+	 */
+	public function test_activates_the_ucsc_2022_theme() {
+		$step = $this->theme_step( 'ucsc-2022' );
+
+		$this->assertNotNull( $step, 'blueprint.json does not install ucsc-2022.' );
+		$this->assertTrue( $step['options']['activate'] );
 	}
 
 	/**

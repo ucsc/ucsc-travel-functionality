@@ -14,6 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| [#14](https://github.com/ucsc/ucsc-travel-functionality/pull/14) | The blueprint also installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases. |
 | [#13](https://github.com/ucsc/ucsc-travel-functionality/pull/13) | `blueprint.json` starts a Playground site with the plugin active and two sample Expeditions. With the CLI, it uses the mounted working copy. The README links to a browser demo. |
 | [#12](https://github.com/ucsc/ucsc-travel-functionality/pull/12) | Settings, UCSC Travel Functionality is an information page that lists what the plugin changes. The Plugins screen links to it. |
 | [#10](https://github.com/ucsc/ucsc-travel-functionality/pull/10) | The `CLAUDE.md` intro line is in plain English, so the writing hook no longer flags it. |
@@ -42,7 +43,7 @@ Text that a theme hardcodes in its templates or block patterns, such as `__( 'Ca
 
 ## 2. Customize the blueprint
 
-`blueprint.json` is a scaffold. It installs and activates the plugin, adds two sample Expeditions, and opens the Expeditions screen. Open questions: which sample posts and terms to add, which theme to install (see item 1), and which Travel site options to set.
+`blueprint.json` is a scaffold. It installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases, activates this plugin, adds two sample Expeditions, and opens the Expeditions screen. Under UCSC 2022, the Expedition archive heading shows "Expedition: Patagonia". Open questions: which sample posts and terms to add, whether to add ACF and The Icon Block as the `ucsc/wordpress-blueprints` blueprint does, and which Travel site options to set.
 
 ## 3. Maintenance
 
