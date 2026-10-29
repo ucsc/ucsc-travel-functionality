@@ -63,16 +63,18 @@ npx wp-env run cli wp eval-file wp-content/plugins/ucsc-travel-functionality/tes
 
 Do not capture the labels by reading `get_taxonomy( 'category' )->labels`. WordPress builds the labels at registration and keeps them on the taxonomy object, so you get the filtered values even after `remove_filter()`. The script removes the filter and builds a new `WP_Taxonomy` instead. `CaptureCoreLabelsTest` makes sure that the script output matches the committed fixture format.
 
-To check behavior in real WordPress, use a local WordPress site that maps this folder to `wp-content/plugins/ucsc-travel-functionality`. Each developer sets up their own site. Do not commit a local environment file, such as `.wp-env.json` or a Playground `blueprint.json`, to this repository. The primary developer uses wp-env, with a `.wp-env.json` in a separate site folder.
+To check behavior in real WordPress, use a local WordPress site that maps this folder to `wp-content/plugins/ucsc-travel-functionality`. Each developer sets up their own site. Do not commit a `.wp-env.json` to this repository. The primary developer uses wp-env, with a `.wp-env.json` in a separate site folder.
 
-If no local site is available, start a temporary WordPress Playground site with this folder mounted:
+If no local site is available, start a temporary WordPress Playground site from `blueprint.json`, with this folder mounted:
 
 ```bash
-npx @wp-playground/cli@latest server --login \
+npx @wp-playground/cli@latest server --blueprint=blueprint.json \
   --mount="$PWD:/wordpress/wp-content/plugins/ucsc-travel-functionality"
 ```
 
-Then activate the plugin on the Plugins screen at http://127.0.0.1:9400/wp-admin/plugins.php. Code changes appear on reload, because the folder is mounted live.
+The blueprint logs in, activates the plugin, adds two sample Expeditions, and opens the Expeditions screen. Code changes appear on reload, because the folder is mounted live.
+
+The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlreadyInstalled` set to `skip`. With the CLI, the mounted folder already exists, so the step skips the GitHub copy and uses the working copy. Keep `skip`. Any other value writes the GitHub copy into the mounted working copy. `BlueprintTest` checks this value and the target folder name. The blueprint does not ship in the zip.
 
 ## Conventions
 
