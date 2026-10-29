@@ -18,6 +18,10 @@ The plugin changes how the Category taxonomy is labeled. It does not change how 
 
 The plugin also adds an information page at Settings, UCSC Travel Functionality. The page lists these changes. The Plugins screen has a Settings link to it.
 
+## Try it in your browser
+
+[Open the plugin in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ucsc/ucsc-travel-functionality/main/blueprint.json). Playground runs a temporary WordPress site in your browser, with the plugin from the `main` branch and two sample Expeditions.
+
 These things stay the same:
 
 - The taxonomy name stays `category`. Existing posts, terms, and code that use `category` keep working.
@@ -46,7 +50,7 @@ npm run zip           # Build ucsc-travel-functionality.zip
 
 The PHPUnit tests replace the WordPress functions the plugin calls with simple stand-ins. They need no WordPress install and no database.
 
-To test the plugin in real WordPress, use your own local WordPress site. The repository does not include a local environment file. Map this folder to `wp-content/plugins/ucsc-travel-functionality` in the site, then activate the plugin on the Plugins screen.
+To test the plugin in real WordPress, use your own local WordPress site. The repository does not include a wp-env file. Map this folder to `wp-content/plugins/ucsc-travel-functionality` in the site, then activate the plugin on the Plugins screen.
 
 For example, with [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/), put a `.wp-env.json` in a separate site folder and list the path to this folder:
 
@@ -59,9 +63,11 @@ For example, with [wp-env](https://developer.wordpress.org/block-editor/referenc
 For a temporary site with no setup, run [WordPress Playground](https://wordpress.github.io/wordpress-playground/) from the plugin folder:
 
 ```bash
-npx @wp-playground/cli@latest server --login \
+npx @wp-playground/cli@latest server --blueprint=blueprint.json \
   --mount="$PWD:/wordpress/wp-content/plugins/ucsc-travel-functionality"
 ```
+
+`blueprint.json` logs in, activates the plugin, and adds two sample Expeditions. The site uses your working copy of the plugin, and code changes appear on reload.
 
 ## Releases
 
