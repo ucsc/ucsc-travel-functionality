@@ -3,7 +3,7 @@
  * Plugin Name: UCSC Travel Functionality
  * Plugin URI: https://github.com/ucsc/ucsc-travel-functionality
  * Description: Adds custom functionality to the UCSC Travel website.
- * Version: 0.1.1
+ * Version: 0.1.2
  * Requires at least: 6.5.0
  * Requires PHP: 8.1
  * Author: UC Santa Cruz
