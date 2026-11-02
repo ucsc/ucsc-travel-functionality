@@ -57,8 +57,9 @@ class PluginBootstrapTest extends TestCase {
 	/**
 	 * The Version header in plugin.php matches package.json.
 	 *
-	 * `npm run release` keeps the two in step through
-	 * wp-plugin-version-updater.js. A hand edit to one of them breaks that.
+	 * `npm run release` keeps the two in step through the
+	 * `@ucsantacruz/wordpress-version-updater` package. A hand edit to one
+	 * of them breaks that.
 	 *
 	 * @return void
 	 */
