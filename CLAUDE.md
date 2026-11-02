@@ -88,7 +88,7 @@ The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlre
 
 `commit-and-tag-version` reads Conventional Commit messages to choose the version bump: `fix:` gives a patch, `feat:` gives a minor version, and `chore:`, `build:`, `docs:` and `test:` give no bump. The commit prefix therefore changes the release.
 
-`npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through `wp-plugin-version-updater.js`. If the header and `package.json` disagree, `PluginBootstrapTest` fails.
+`npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through the `@ucsantacruz/wordpress-version-updater` dev dependency, which `bumpFiles` in `package.json` names by its `node_modules` path. If the header and `package.json` disagree, `PluginBootstrapTest` fails.
 
 The zip ships the paths in the `files` array of `package.json`, plus `package.json` itself, which npm always includes. `CHANGELOG.md` is in that list, and `npm run release` updates it.
 
