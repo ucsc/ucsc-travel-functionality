@@ -14,6 +14,7 @@ Landed work, newest first:
 
 | Commit or PR | Change |
 | --- | --- |
+| `update-version-updater` branch | The updater package is at version 2.0.0. A `prerelease` script runs `wordpress-version-updater check plugin.php`. If the package or the `Version:` line is missing, the release stops before it writes a file. Tests assert the script and the updater path. |
 | [#15](https://github.com/ucsc/ucsc-travel-functionality/pull/15) | The `Version:` header updater comes from the shared `@ucsantacruz/wordpress-version-updater` npm package. The local `wp-plugin-version-updater.js` is gone. |
 | [#14](https://github.com/ucsc/ucsc-travel-functionality/pull/14) | The blueprint also installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases. |
 | [#13](https://github.com/ucsc/ucsc-travel-functionality/pull/13) | `blueprint.json` starts a Playground site with the plugin active and two sample Expeditions. With the CLI, it uses the mounted working copy. The README links to a browser demo. |

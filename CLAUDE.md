@@ -90,6 +90,8 @@ The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlre
 
 `npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through the `@ucsantacruz/wordpress-version-updater` dev dependency, which `bumpFiles` in `package.json` names by its `node_modules` path. If the header and `package.json` disagree, `PluginBootstrapTest` fails.
 
+If `commit-and-tag-version` cannot load an updater, it writes a warning, skips that file, and continues the release. The `prerelease` script in `package.json` runs `wordpress-version-updater check plugin.php` before the release writes a file. If the package is not installed or `plugin.php` has no `Version:` line, the release stops. The check does not catch a wrong updater path, because the package itself is installed. `PluginBootstrapTest` asserts the path and the `prerelease` script.
+
 The zip ships the paths in the `files` array of `package.json`, plus `package.json` itself, which npm always includes. `CHANGELOG.md` is in that list, and `npm run release` updates it.
 
 The `package` job in `ci.yml` builds the zip and makes sure that it holds the required files and no development files. If you add a path to `files` or a development file at the repository root, update the lists in that job.
