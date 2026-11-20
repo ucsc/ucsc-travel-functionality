@@ -45,7 +45,11 @@ Text that a theme hardcodes in its templates or block patterns, such as `__( 'Ca
 
 ## 2. Customize the blueprint
 
-`blueprint.json` is a scaffold. It installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases, activates this plugin, adds two sample Expeditions, and opens the Expeditions screen. Under UCSC 2022, the Expedition archive heading shows "Expedition: Patagonia". Open questions: which sample posts and terms to add, whether to add ACF and The Icon Block as the `ucsc/wordpress-blueprints` blueprint does, and which Travel site options to set.
+`blueprint.json` is a scaffold. It installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases. Then it activates this plugin, adds two sample Expeditions, and opens the Expeditions screen. Under UCSC 2022, the Expedition archive heading shows "Expedition: Patagonia". The open questions follow:
+
+- Which sample posts and terms to add.
+- Whether to add ACF and The Icon Block, as the `ucsc/wordpress-blueprints` blueprint does.
+- Which Travel site options to set.
 
 ## 3. Maintenance
 
