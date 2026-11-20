@@ -75,4 +75,80 @@ class PluginBootstrapTest extends TestCase {
 			$header
 		);
 	}
+
+	/**
+	 * The release runs the header check before it writes a file.
+	 *
+	 * The `prerelease` script stops `npm run release` if the updater package
+	 * is not installed or if plugin.php has no Version line. Without it,
+	 * commit-and-tag-version skips plugin.php with only a warning.
+	 *
+	 * @return void
+	 */
+	public function test_prerelease_script_checks_plugin_header() {
+		$config = $this->release_config();
+
+		$this->assertSame(
+			'wordpress-version-updater check plugin.php',
+			$config['scripts']['prerelease'] ?? null
+		);
+	}
+
+	/**
+	 * The plugin.php updater path points into the updater dev dependency.
+	 *
+	 * The release tool, commit-and-tag-version, loads the updater path
+	 * relative to the repository root. If the file is missing, it skips plugin.php with only
+	 * a warning, and the release tags a version that the header does not
+	 * have. The prerelease check does not catch a wrong path, because the
+	 * package itself is installed.
+	 *
+	 * The CI checks job does not run `npm ci`, so the file check runs only
+	 * where node_modules exists.
+	 *
+	 * @return void
+	 */
+	public function test_plugin_header_updater_path_is_the_package() {
+		$root    = dirname( __DIR__, 2 );
+		$package = $this->package_json();
+		$updater = null;
+
+		foreach ( $package['commit-and-tag-version']['bumpFiles'] as $bump_file ) {
+			if ( 'plugin.php' === ( $bump_file['filename'] ?? null ) ) {
+				$updater = $bump_file['updater'] ?? null;
+			}
+		}
+
+		$this->assertSame(
+			'node_modules/@ucsantacruz/wordpress-version-updater/index.js',
+			$updater
+		);
+		$this->assertArrayHasKey(
+			'@ucsantacruz/wordpress-version-updater',
+			$package['devDependencies']
+		);
+
+		if ( is_dir( $root . '/node_modules' ) ) {
+			$this->assertFileExists( $root . '/' . $updater );
+		}
+	}
+
+	/**
+	 * Returns the commit-and-tag-version configuration from package.json.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private function release_config() {
+		return $this->package_json()['commit-and-tag-version'];
+	}
+
+	/**
+	 * Returns package.json as an array.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private function package_json() {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading a file from this repository, not making a request.
+		return json_decode( (string) file_get_contents( dirname( __DIR__, 2 ) . '/package.json' ), true );
+	}
 }

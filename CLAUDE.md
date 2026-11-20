@@ -72,7 +72,7 @@ npx @wp-playground/cli@latest server --blueprint=blueprint.json \
   --mount="$PWD:/wordpress/wp-content/plugins/ucsc-travel-functionality"
 ```
 
-The blueprint logs in, installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases, activates this plugin, adds two sample Expeditions, and opens the Expeditions screen. ACF PRO is not installed, so the ACF features of the theme and of UCSC Custom Functionality do not work in the Playground site. Code changes appear on reload, because the folder is mounted live.
+The blueprint logs in and installs the UCSC 2022 theme and the UCSC Custom Functionality plugin from their latest GitHub releases. Then it activates this plugin, adds two sample Expeditions, and opens the Expeditions screen. ACF PRO is not installed, so the ACF features of the theme and of UCSC Custom Functionality do not work in the Playground site. Code changes appear on reload, because the folder is mounted live.
 
 The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlreadyInstalled` set to `skip`. With the CLI, the mounted folder already exists, so the step skips the GitHub copy and uses the working copy. Keep `skip`. Any other value writes the GitHub copy into the mounted working copy. `BlueprintTest` checks this value, the target folder name, and the UCSC 2022 theme step. The blueprint does not ship in the zip.
 
@@ -89,6 +89,8 @@ The blueprint installs the plugin from the `main` branch on GitHub, with `ifAlre
 `commit-and-tag-version` reads Conventional Commit messages to choose the version bump: `fix:` gives a patch, `feat:` gives a minor version, and `chore:`, `build:`, `docs:` and `test:` give no bump. The commit prefix therefore changes the release.
 
 `npm run release` updates the version in `package.json`, in `package-lock.json`, and in the `Version:` header of `plugin.php`. The header update goes through the `@ucsantacruz/wordpress-version-updater` dev dependency, which `bumpFiles` in `package.json` names by its `node_modules` path. If the header and `package.json` disagree, `PluginBootstrapTest` fails.
+
+If `commit-and-tag-version` cannot load an updater, it writes a warning, skips that file, and continues the release. The `prerelease` script in `package.json` runs `wordpress-version-updater check plugin.php` before the release writes a file. If the package is not installed or `plugin.php` has no `Version:` line, the release stops. The check does not catch a wrong updater path, because the package itself is installed. `PluginBootstrapTest` asserts the path and the `prerelease` script.
 
 The zip ships the paths in the `files` array of `package.json`, plus `package.json` itself, which npm always includes. `CHANGELOG.md` is in that list, and `npm run release` updates it.
 
